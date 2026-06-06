@@ -50,8 +50,8 @@
     border-radius:11px;padding:11px 14px;position:relative;overflow:hidden;border:1px solid rgba(0,0,0,.07);
     box-shadow:0 6px 16px rgba(0,0,0,.2);opacity:0;transform:translateY(10px);animation:rise .42s forwards}
   @keyframes rise{to{opacity:1;transform:none}}
-  .row.rookie{background:linear-gradient(180deg,#fff6e2,#ffeec9)}
-  .row.rookie::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--orange)}
+  .row.firstyr{background:linear-gradient(180deg,#fff6e2,#ffeec9)}
+  .row.firstyr::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--orange)}
   .rk{font-family:"Bebas Neue",sans-serif;font-size:1.5rem;color:#9aa1b0;text-align:center}
   .row:nth-child(1) .rk,.row:nth-child(2) .rk,.row:nth-child(3) .rk{color:var(--orange)}
   .pmain{min-width:0}
@@ -67,7 +67,7 @@
   .chip.how:hover{filter:brightness(.94);text-decoration:underline}
   .bar{height:6px;border-radius:4px;margin-top:7px;background:rgba(0,0,0,.07);overflow:hidden}
   .bar > i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--orange),var(--orange-soft))}
-  .row.rookie .bar > i{background:linear-gradient(90deg,#b4500a,var(--orange))}
+  .row.firstyr .bar > i{background:linear-gradient(90deg,#b4500a,var(--orange))}
   .stat{text-align:right;white-space:nowrap}
   .stat .m{font-family:"Bebas Neue",sans-serif;font-size:1.7rem;line-height:1;color:#10131a}
   .stat .m small{font-family:"JetBrains Mono",monospace;font-size:.6rem;color:#8a93a3;letter-spacing:.05em}
@@ -192,7 +192,7 @@
   <header>
     <div class="kicker">New York Knicks · Minutes &amp; Roster Ledger</div>
     <h1>The <span class="o">Knicks</span> Minutes Ledger</h1>
-    <p class="sub">Top-10 regular-season minutes leaders for every year, <b>2014–15 → 2025–26</b> — with rookies (★), their draft slot, and the head coach. Tap any <b>highlighted name</b> to see how the Knicks landed him.</p>
+    <p class="sub">Top-10 regular-season minutes leaders for every year, <b>2014–15 → 2025–26</b> — with each player's <b>first season as a Knick</b> (★), draft slots for rookies, and the head coach. Tap any <b>highlighted name</b> to see how the Knicks landed him.</p>
     <div class="modes">
       <button class="mode active" data-mode="board">Minutes by Season</button>
       <button class="mode" data-mode="ledger">How They Were Built</button>
@@ -204,7 +204,7 @@
     <div class="yearbar" id="yearbar"></div>
     <div class="board" id="board"></div>
     <div class="legend">
-      <span>★ <b>Rookie season</b> (draft slot shown)</span>
+      <span>★ <b>First season as a Knick</b> (draft slot shown for rookies)</span>
       <span>Bar = share of season's top minute total</span>
       <span>Colored name chip = tap to view acquisition</span>
     </div>
@@ -274,6 +274,11 @@ LEDGER.forEach(d=>{
   else { if(!NAME2[norm(d.name)]) NAME2[norm(d.name)]={id:d.id,method:d.method}; }
 });
 
+// first season each player appears (ORDER is newest→oldest, so the last write wins = his earliest year here)
+const FIRST_SEASON={}; ORDER.forEach(s=>S[s].forEach(r=>{FIRST_SEASON[norm(r.n)]=s;}));
+// the earliest column is left-censored — holdovers (e.g. Melo, arrived 2011) can't be told from true first-years, so it gets no first-year stars except known rookies
+const BASE_SEASON=ORDER[ORDER.length-1];
+
 /* ---------- board ---------- */
 const yearbar=document.getElementById('yearbar');
 const board=document.getElementById('board');
@@ -293,10 +298,11 @@ function drawSeason(s){
   rows.forEach((r,i)=>{
     const how=NAME2[norm(r.n)];
     const howChip = how ? `<span class="chip how ${how.method}" data-id="${how.id}">${how.method==='trade'?'Trade':how.method==='draft'?'Draft':'Free Agent'} ▸</span>` : '';
-    const star = r.rk ? `<span class="star">★</span>` : '';
+    const firstYr = r.rk || (FIRST_SEASON[norm(r.n)]===s && s!==BASE_SEASON);
+    const star = firstYr ? `<span class="star">★</span>` : '';
     const pick = r.rk && r.pick ? `<span class="chip pick">${r.pick}</span>` : '';
     const w=(r.min/max*100).toFixed(1);
-    html+=`<div class="row${r.rk?' rookie':''}" style="animation-delay:${Math.min(i*45,500)}ms">
+    html+=`<div class="row${firstYr?' firstyr':''}" style="animation-delay:${Math.min(i*45,500)}ms">
       <div class="rk">${i+1}</div>
       <div class="pmain">
         <div class="pname">${r.n}${star}${pick}${howChip}</div>
