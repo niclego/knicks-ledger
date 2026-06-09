@@ -19,6 +19,24 @@ seasons = {
 "2011-12":[("Tyson Chandler",62,2061,33.2,0),("Landry Fields",66,1894,28.7,0),("Carmelo Anthony",55,1876,34.1,0),("Iman Shumpert",59,1705,28.9,1),("Amar'e Stoudemire",47,1543,32.8,0),("Steve Novak",54,1020,18.9,0),("JR Smith",35,967,27.6,0),("Jeremy Lin",35,940,26.9,0),("Jared Jeffries",39,729,18.7,0),("Toney Douglas",38,656,17.3,0)],
 "2010-11":[("Amar'e Stoudemire",78,2870,36.8,0),("Landry Fields",82,2541,31.0,1),("Raymond Felton",54,2074,38.4,0),("Toney Douglas",81,1971,24.3,0),("Wilson Chandler",51,1759,34.5,0),("Danilo Gallinari",48,1671,34.8,0),("Shawne Williams",64,1323,20.7,0),("Ronny Turiaf",64,1141,17.8,0),("Carmelo Anthony",27,977,36.2,0),("Henry Walker",61,784,12.9,0)],
 }
+records = {
+ "2025-26":{"rec":"TBD","post":"TBD"},
+ "2024-25":{"rec":"51–31","post":"Lost Conf. Finals · 2–4 vs Pacers"},
+ "2023-24":{"rec":"50–32","post":"Lost Conf. Semis · 3–4 vs Pacers"},
+ "2022-23":{"rec":"47–35","post":"Lost Conf. Semis · 2–4 vs Heat"},
+ "2021-22":{"rec":"37–45","post":"Missed playoffs"},
+ "2020-21":{"rec":"41–31","post":"Lost 1st Round · 1–4 vs Hawks"},
+ "2019-20":{"rec":"21–45","post":"Missed playoffs"},
+ "2018-19":{"rec":"17–65","post":"Missed playoffs"},
+ "2017-18":{"rec":"29–53","post":"Missed playoffs"},
+ "2016-17":{"rec":"31–51","post":"Missed playoffs"},
+ "2015-16":{"rec":"32–50","post":"Missed playoffs"},
+ "2014-15":{"rec":"17–65","post":"Missed playoffs"},
+ "2013-14":{"rec":"37–45","post":"Missed playoffs"},
+ "2012-13":{"rec":"54–28","post":"Lost Conf. Semis · 2–4 vs Pacers"},
+ "2011-12":{"rec":"36–30","post":"Lost 1st Round · 1–4 vs Heat"},
+ "2010-11":{"rec":"42–40","post":"Lost 1st Round · 0–4 vs Celtics"},
+}
 coaches = {"2025-26":"Mike Brown","2024-25":"Tom Thibodeau","2023-24":"Tom Thibodeau","2022-23":"Tom Thibodeau","2021-22":"Tom Thibodeau","2020-21":"Tom Thibodeau","2019-20":"David Fizdale / Mike Miller (int.)","2018-19":"David Fizdale","2017-18":"Jeff Hornacek","2016-17":"Jeff Hornacek","2015-16":"Derek Fisher / Kurt Rambis (int.)","2014-15":"Derek Fisher","2013-14":"Mike Woodson","2012-13":"Mike Woodson","2011-12":"Mike D'Antoni / Mike Woodson (int.)","2010-11":"Mike D'Antoni"}
 draft = {"2014-15|Langston Galloway":"Undrafted '14","2015-16|Kristaps Porzingis":"#4 '15","2015-16|Jerian Grant":"#19 '15","2016-17|Willy Hernangomez":"#35 '15","2016-17|Mindaugas Kuzminskas":"Undrafted '16","2017-18|Frank Ntilikina":"#8 '17","2018-19|Kevin Knox":"#9 '18","2018-19|Allonzo Trier":"Undrafted '18","2018-19|Mitchell Robinson":"#36 '18","2019-20|RJ Barrett":"#3 '19","2020-21|Immanuel Quickley":"#25 '20","2021-22|Quentin Grimes":"#25 '21","2013-14|Tim Hardaway Jr.":"#24 '13","2012-13|Pablo Prigioni":"Undrafted '12","2012-13|Chris Copeland":"Undrafted '12","2011-12|Iman Shumpert":"#17 '11","2010-11|Landry Fields":"#39 '10"}
 
@@ -127,6 +145,7 @@ SEASONCOLS_JSON = json.dumps(SEASON_COLS, ensure_ascii=False)
 GLOSSARY_JSON = json.dumps(glossary, ensure_ascii=False)
 SEASONS_JSON = json.dumps(S, ensure_ascii=False)
 COACHES_JSON = json.dumps(coaches, ensure_ascii=False)
+RECORDS_JSON = json.dumps(records, ensure_ascii=False)
 LEDGER_JSON = json.dumps(ledger, ensure_ascii=False)
 
 html = r'''<!DOCTYPE html>
@@ -175,6 +194,15 @@ html = r'''<!DOCTYPE html>
   .seasonhead .yy{font-family:"Bebas Neue",sans-serif;font-size:3.2rem;line-height:.9;color:var(--cream)}
   .seasonhead .coach{font-family:"JetBrains Mono",monospace;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-soft)}
   .seasonhead .coach span{color:var(--muted)}
+  .seasonhead .headmeta{display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+  @media(max-width:560px){.seasonhead .headmeta{align-items:flex-start}}
+  .reccard{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .reccard .rec{font-family:"Bebas Neue",sans-serif;font-size:1.7rem;line-height:1;color:var(--cream);letter-spacing:.02em}
+  .reccard .post{font-family:"JetBrains Mono",monospace;font-size:.66rem;font-weight:700;letter-spacing:.05em;
+    text-transform:uppercase;padding:4px 9px;border-radius:7px;white-space:nowrap}
+  .reccard .post.made{background:rgba(31,122,77,.16);color:#7fd9a8;border:1px solid rgba(31,122,77,.4)}
+  .reccard .post.miss{background:rgba(124,133,151,.14);color:var(--muted);border:1px solid var(--line)}
+  .reccard .post.tbd{background:rgba(247,105,0,.14);color:var(--orange-soft);border:1px solid rgba(247,105,0,.3)}
   .rows{display:flex;flex-direction:column;gap:7px}
   .row{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:12px;
     background:linear-gradient(180deg,var(--paper),var(--cream));color:var(--ink);
@@ -390,6 +418,7 @@ html = r'''<!DOCTYPE html>
 <script>
 const S = __SEASONS__;
 const COACHES = __COACHES__;
+const RECORDS = __RECORDS__;
 const LEDGER = __LEDGER__;
 const SAL = __SALARY__;
 const CAP = __CAP__;
@@ -420,7 +449,14 @@ function drawSeason(s){
   const rows=S[s]; const max=Math.max(...rows.map(r=>r.min));
   const coachRaw=COACHES[s];
   const coach=`Head Coach: <span style="color:#cdd4e0">${coachRaw}</span>`;
-  let html=`<div class="seasonhead"><div class="yy">${s}</div><div class="coach">${coach}</div></div><div class="rows">`;
+  const rec=RECORDS[s]||{};
+  const postCls = (rec.post==='Missed playoffs') ? 'miss' : (rec.post==='TBD' ? 'tbd' : 'made');
+  const recLine = rec.rec ? `<div class="reccard">
+      <span class="rec">${rec.rec}</span>
+      <span class="post ${postCls}">${rec.post||''}</span>
+    </div>` : '';
+  let html=`<div class="seasonhead"><div class="yy">${s}</div>
+      <div class="headmeta">${recLine}<div class="coach">${coach}</div></div></div><div class="rows">`;
   rows.forEach((r,i)=>{
     const how=NAME2[norm(r.n)];
     const howChip = how ? `<span class="chip how ${how.method}" data-id="${how.id}">${how.method==='trade'?'Trade':how.method==='draft'?'Draft':'Free Agent'} ▸</span>` : '';
@@ -583,7 +619,7 @@ renderSalary();
 </body>
 </html>'''
 
-html = html.replace("__SEASONS__", SEASONS_JSON).replace("__COACHES__", COACHES_JSON).replace("__LEDGER__", LEDGER_JSON).replace("__SALARY__", SALARY_JSON).replace("__CAP__", CAP_JSON).replace("__SEASONCOLS__", SEASONCOLS_JSON).replace("__GLOSSARY__", GLOSSARY_JSON)
+html = html.replace("__SEASONS__", SEASONS_JSON).replace("__COACHES__", COACHES_JSON).replace("__RECORDS__", RECORDS_JSON).replace("__LEDGER__", LEDGER_JSON).replace("__SALARY__", SALARY_JSON).replace("__CAP__", CAP_JSON).replace("__SEASONCOLS__", SEASONCOLS_JSON).replace("__GLOSSARY__", GLOSSARY_JSON)
 out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "index.html")
 with open(out_path, "w") as f:
     f.write(html)
