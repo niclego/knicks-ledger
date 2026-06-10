@@ -2,22 +2,22 @@
 import json, os
 
 seasons = {
-"2025-26":[("Mikal Bridges",82,2692,32.8,0),("Jalen Brunson",74,2590,35.0,0),("Karl-Anthony Towns",75,2322,31.0,0),("OG Anunoby",67,2224,33.2,0),("Josh Hart",66,1994,30.2,0),("Jordan Clarkson",72,1279,17.8,0),("Mitchell Robinson",60,1175,19.6,0),("Landry Shamet",51,1171,23.0,0),("Miles McBride",41,1080,26.3,0),("Tyler Kolek",62,727,11.7,0)],
-"2024-25":[("Mikal Bridges",82,3036,37.0,0),("Josh Hart",77,2897,37.6,0),("OG Anunoby",74,2706,36.6,0),("Karl-Anthony Towns",72,2517,35.0,0),("Jalen Brunson",65,2301,35.4,0),("Miles McBride",64,1593,24.9,0),("Precious Achiuwa",57,1170,20.5,0),("Cameron Payne",72,1090,15.1,0),("Landry Shamet",50,762,15.2,0),("Jericho Sims",39,422,10.8,0)],
-"2023-24":[("Jalen Brunson",77,2726,35.4,0),("Josh Hart",81,2707,33.4,0),("Donte DiVincenzo",81,2360,29.1,0),("Isaiah Hartenstein",75,1896,25.3,0),("Julius Randle",46,1630,35.4,0),("Miles McBride",68,1328,19.5,0),("Precious Achiuwa",49,1187,24.2,0),("Quentin Grimes",45,910,20.2,0),("OG Anunoby",23,802,34.9,0),("Mitchell Robinson",31,768,24.8,0)],
-"2022-23":[("Julius Randle",77,2737,35.5,0),("RJ Barrett",73,2475,33.9,0),("Jalen Brunson",68,2379,35.0,0),("Immanuel Quickley",81,2344,28.9,0),("Quentin Grimes",71,2121,29.9,0),("Isaiah Hartenstein",82,1626,19.8,0),("Mitchell Robinson",59,1591,27.0,0),("Obi Toppin",67,1050,15.7,0),("Jericho Sims",52,812,15.6,0),("Miles McBride",64,760,11.9,0)],
-"2021-22":[("Julius Randle",72,2544,35.3,0),("RJ Barrett",70,2417,34.5,0),("Evan Fournier",80,2358,29.5,0),("Alec Burks",81,2318,28.6,0),("Mitchell Robinson",72,1848,25.7,0),("Immanuel Quickley",78,1802,23.1,0),("Obi Toppin",72,1230,17.1,0),("Kemba Walker",37,948,25.6,0),("Taj Gibson",52,946,18.2,0),("Quentin Grimes",46,786,17.1,1)],
-"2020-21":[("Julius Randle",71,2667,37.6,0),("RJ Barrett",72,2511,34.9,0),("Reggie Bullock",65,1949,30.0,0),("Nerlens Noel",64,1547,24.2,0),("Elfrid Payton",63,1484,23.6,0),("Alec Burks",49,1255,25.6,0),("Immanuel Quickley",64,1243,19.4,1),("Derrick Rose",35,937,26.8,0),("Taj Gibson",45,936,20.8,0),("Mitchell Robinson",31,853,27.5,0)],
-"2019-20":[("Julius Randle",64,2080,32.5,0),("RJ Barrett",56,1704,30.4,1),("Mitchell Robinson",61,1412,23.1,0),("Bobby Portis",66,1393,21.1,0),("Marcus Morris",43,1387,32.3,0),("Elfrid Payton",45,1246,27.7,0),("Frank Ntilikina",57,1187,20.8,0),("Kevin Knox",65,1166,17.9,0),("Taj Gibson",62,1025,16.5,0),("Damyean Dotson",48,836,17.4,0)],
-"2018-19":[("Kevin Knox",75,2158,28.8,1),("Damyean Dotson",73,2004,27.5,0),("Noah Vonleh",68,1722,25.3,0),("Emmanuel Mudiay",59,1607,27.2,0),("Tim Hardaway Jr.",46,1499,32.6,0),("Allonzo Trier",64,1459,22.8,1),("Mitchell Robinson",66,1360,20.6,1),("Mario Hezonja",58,1206,20.8,0),("Enes Kanter",44,1128,25.6,0),("Frank Ntilikina",43,904,21.0,0)],
-"2017-18":[("Tim Hardaway Jr.",57,1885,33.1,0),("Enes Kanter",71,1830,25.8,0),("Frank Ntilikina",78,1705,21.9,1),("Michael Beasley",74,1653,22.3,0),("Kristaps Porzingis",48,1553,32.4,0),("Jarrett Jack",62,1548,25.0,0),("Kyle O'Quinn",77,1386,18.0,0),("Lance Thomas",73,1353,18.5,0),("Doug McDermott",55,1172,21.3,0),("Trey Burke",36,785,21.8,0)],
-"2016-17":[("Carmelo Anthony",74,2538,34.3,0),("Courtney Lee",77,2459,31.9,0),("Kristaps Porzingis",66,2164,32.8,0),("Derrick Rose",64,2082,32.5,0),("Justin Holiday",82,1639,20.0,0),("Brandon Jennings",58,1428,24.6,0),("Willy Hernangomez",72,1324,18.4,1),("Kyle O'Quinn",79,1229,15.6,0),("Mindaugas Kuzminskas",68,1016,14.9,1),("Joakim Noah",46,1015,22.1,0)],
-"2015-16":[("Carmelo Anthony",72,2530,35.1,0),("Arron Afflalo",71,2371,33.4,0),("Robin Lopez",82,2219,27.1,0),("Kristaps Porzingis",72,2047,28.4,1),("Langston Galloway",82,2033,24.8,0),("Jose Calderon",72,2024,28.1,0),("Derrick Williams",80,1435,17.9,0),("Lance Thomas",59,1313,22.3,0),("Jerian Grant",76,1265,16.6,1),("Sasha Vujacic",61,908,14.9,0)],
-"2014-15":[("Shane Larkin",76,1865,24.5,0),("Jason Smith",82,1785,21.8,0),("Tim Hardaway Jr.",70,1681,24.0,0),("Langston Galloway",45,1457,32.4,1),("Carmelo Anthony",40,1428,35.7,0),("Quincy Acy",68,1287,18.9,0),("Jose Calderon",42,1270,30.2,0),("Lance Thomas",40,1040,26.0,0),("Cole Aldrich",61,976,16.0,0),("Amar'e Stoudemire",36,865,24.0,0)],
-"2013-14":[("Carmelo Anthony",77,2982,38.7,0),("JR Smith",74,2421,32.7,0),("Raymond Felton",65,2017,31.0,0),("Iman Shumpert",74,1962,26.5,0),("Tim Hardaway Jr.",81,1875,23.1,1),("Tyson Chandler",55,1662,30.2,0),("Amar'e Stoudemire",65,1466,22.6,0),("Pablo Prigioni",66,1283,19.4,0),("Andrea Bargnani",42,1257,29.9,0),("Kenyon Martin",32,633,19.8,0)],
-"2012-13":[("JR Smith",80,2678,33.5,0),("Carmelo Anthony",67,2482,37.0,0),("Raymond Felton",68,2313,34.0,0),("Tyson Chandler",66,2164,32.8,0),("Jason Kidd",76,2043,26.9,0),("Steve Novak",81,1641,20.3,0),("Pablo Prigioni",78,1263,16.2,1),("Iman Shumpert",45,996,22.1,0),("Chris Copeland",56,862,15.4,1),("Ronnie Brewer",46,711,15.5,0)],
-"2011-12":[("Tyson Chandler",62,2061,33.2,0),("Landry Fields",66,1894,28.7,0),("Carmelo Anthony",55,1876,34.1,0),("Iman Shumpert",59,1705,28.9,1),("Amar'e Stoudemire",47,1543,32.8,0),("Steve Novak",54,1020,18.9,0),("JR Smith",35,967,27.6,0),("Jeremy Lin",35,940,26.9,0),("Jared Jeffries",39,729,18.7,0),("Toney Douglas",38,656,17.3,0)],
-"2010-11":[("Amar'e Stoudemire",78,2870,36.8,0),("Landry Fields",82,2541,31.0,1),("Raymond Felton",54,2074,38.4,0),("Toney Douglas",81,1971,24.3,0),("Wilson Chandler",51,1759,34.5,0),("Danilo Gallinari",48,1671,34.8,0),("Shawne Williams",64,1323,20.7,0),("Ronny Turiaf",64,1141,17.8,0),("Carmelo Anthony",27,977,36.2,0),("Henry Walker",61,784,12.9,0)],
+"2025-26":[("Mikal Bridges",82,2692,32.8,0),("Jalen Brunson",74,2590,35.0,0),("Karl-Anthony Towns",75,2322,31.0,0),("OG Anunoby",67,2224,33.2,0),("Josh Hart",66,1994,30.2,0),("Jordan Clarkson",72,1279,17.8,1),("Mitchell Robinson",60,1175,19.6,0),("Landry Shamet",51,1171,23.0,0),("Miles McBride",41,1080,26.3,0),("Tyler Kolek",62,727,11.7,0)],
+"2024-25":[("Mikal Bridges",82,3036,37.0,1),("Josh Hart",77,2897,37.6,0),("OG Anunoby",74,2706,36.6,0),("Karl-Anthony Towns",72,2517,35.0,1),("Jalen Brunson",65,2301,35.4,0),("Miles McBride",64,1593,24.9,0),("Precious Achiuwa",57,1170,20.5,0),("Cameron Payne",72,1090,15.1,1),("Landry Shamet",50,762,15.2,1),("Jericho Sims",39,422,10.8,0)],
+"2023-24":[("Jalen Brunson",77,2726,35.4,0),("Josh Hart",81,2707,33.4,0),("Donte DiVincenzo",81,2360,29.1,1),("Isaiah Hartenstein",75,1896,25.3,0),("Julius Randle",46,1630,35.4,0),("Miles McBride",68,1328,19.5,0),("Precious Achiuwa",49,1187,24.2,1),("Quentin Grimes",45,910,20.2,0),("OG Anunoby",23,802,34.9,1),("Mitchell Robinson",31,768,24.8,0)],
+"2022-23":[("Julius Randle",77,2737,35.5,0),("RJ Barrett",73,2475,33.9,0),("Jalen Brunson",68,2379,35.0,1),("Immanuel Quickley",81,2344,28.9,0),("Quentin Grimes",71,2121,29.9,0),("Isaiah Hartenstein",82,1626,19.8,1),("Mitchell Robinson",59,1591,27.0,0),("Obi Toppin",67,1050,15.7,0),("Jericho Sims",52,812,15.6,0),("Miles McBride",64,760,11.9,0)],
+"2021-22":[("Julius Randle",72,2544,35.3,0),("RJ Barrett",70,2417,34.5,0),("Evan Fournier",80,2358,29.5,1),("Alec Burks",81,2318,28.6,0),("Mitchell Robinson",72,1848,25.7,0),("Immanuel Quickley",78,1802,23.1,0),("Obi Toppin",72,1230,17.1,0),("Kemba Walker",37,948,25.6,1),("Taj Gibson",52,946,18.2,0),("Quentin Grimes",46,786,17.1,1)],
+"2020-21":[("Julius Randle",71,2667,37.6,0),("RJ Barrett",72,2511,34.9,0),("Reggie Bullock",65,1949,30.0,1),("Nerlens Noel",64,1547,24.2,1),("Elfrid Payton",63,1484,23.6,0),("Alec Burks",49,1255,25.6,1),("Immanuel Quickley",64,1243,19.4,1),("Derrick Rose",35,937,26.8,1),("Taj Gibson",45,936,20.8,0),("Mitchell Robinson",31,853,27.5,0)],
+"2019-20":[("Julius Randle",64,2080,32.5,1),("RJ Barrett",56,1704,30.4,1),("Mitchell Robinson",61,1412,23.1,0),("Bobby Portis",66,1393,21.1,1),("Marcus Morris",43,1387,32.3,1),("Elfrid Payton",45,1246,27.7,1),("Frank Ntilikina",57,1187,20.8,0),("Kevin Knox",65,1166,17.9,0),("Taj Gibson",62,1025,16.5,1),("Damyean Dotson",48,836,17.4,0)],
+"2018-19":[("Kevin Knox",75,2158,28.8,1),("Damyean Dotson",73,2004,27.5,0),("Noah Vonleh",68,1722,25.3,1),("Emmanuel Mudiay",59,1607,27.2,0),("Tim Hardaway Jr.",46,1499,32.6,0),("Allonzo Trier",64,1459,22.8,1),("Mitchell Robinson",66,1360,20.6,1),("Mario Hezonja",58,1206,20.8,1),("Enes Kanter",44,1128,25.6,0),("Frank Ntilikina",43,904,21.0,0)],
+"2017-18":[("Tim Hardaway Jr.",57,1885,33.1,1),("Enes Kanter",71,1830,25.8,1),("Frank Ntilikina",78,1705,21.9,1),("Michael Beasley",74,1653,22.3,1),("Kristaps Porzingis",48,1553,32.4,0),("Jarrett Jack",62,1548,25.0,1),("Kyle O'Quinn",77,1386,18.0,0),("Lance Thomas",73,1353,18.5,0),("Doug McDermott",55,1172,21.3,1),("Trey Burke",36,785,21.8,1)],
+"2016-17":[("Carmelo Anthony",74,2538,34.3,0),("Courtney Lee",77,2459,31.9,1),("Kristaps Porzingis",66,2164,32.8,0),("Derrick Rose",64,2082,32.5,1),("Justin Holiday",82,1639,20.0,1),("Brandon Jennings",58,1428,24.6,1),("Willy Hernangomez",72,1324,18.4,1),("Kyle O'Quinn",79,1229,15.6,0),("Mindaugas Kuzminskas",68,1016,14.9,1),("Joakim Noah",46,1015,22.1,1)],
+"2015-16":[("Carmelo Anthony",72,2530,35.1,0),("Arron Afflalo",71,2371,33.4,1),("Robin Lopez",82,2219,27.1,1),("Kristaps Porzingis",72,2047,28.4,1),("Langston Galloway",82,2033,24.8,0),("Jose Calderon",72,2024,28.1,0),("Derrick Williams",80,1435,17.9,1),("Lance Thomas",59,1313,22.3,0),("Jerian Grant",76,1265,16.6,1),("Sasha Vujacic",61,908,14.9,1)],
+"2014-15":[("Shane Larkin",76,1865,24.5,1),("Jason Smith",82,1785,21.8,1),("Tim Hardaway Jr.",70,1681,24.0,0),("Langston Galloway",45,1457,32.4,1),("Carmelo Anthony",40,1428,35.7,0),("Quincy Acy",68,1287,18.9,1),("Jose Calderon",42,1270,30.2,1),("Lance Thomas",40,1040,26.0,1),("Cole Aldrich",61,976,16.0,0),("Amar'e Stoudemire",36,865,24.0,0)],
+"2013-14":[("Carmelo Anthony",77,2982,38.7,0),("JR Smith",74,2421,32.7,0),("Raymond Felton",65,2017,31.0,0),("Iman Shumpert",74,1962,26.5,0),("Tim Hardaway Jr.",81,1875,23.1,1),("Tyson Chandler",55,1662,30.2,0),("Amar'e Stoudemire",65,1466,22.6,0),("Pablo Prigioni",66,1283,19.4,0),("Andrea Bargnani",42,1257,29.9,1),("Kenyon Martin",32,633,19.8,0)],
+"2012-13":[("JR Smith",80,2678,33.5,0),("Carmelo Anthony",67,2482,37.0,0),("Raymond Felton",68,2313,34.0,1),("Tyson Chandler",66,2164,32.8,0),("Jason Kidd",76,2043,26.9,1),("Steve Novak",81,1641,20.3,0),("Pablo Prigioni",78,1263,16.2,1),("Iman Shumpert",45,996,22.1,0),("Chris Copeland",56,862,15.4,1),("Ronnie Brewer",46,711,15.5,1)],
+"2011-12":[("Tyson Chandler",62,2061,33.2,1),("Landry Fields",66,1894,28.7,0),("Carmelo Anthony",55,1876,34.1,0),("Iman Shumpert",59,1705,28.9,1),("Amar'e Stoudemire",47,1543,32.8,0),("Steve Novak",54,1020,18.9,1),("JR Smith",35,967,27.6,1),("Jeremy Lin",35,940,26.9,1),("Jared Jeffries",39,729,18.7,0),("Toney Douglas",38,656,17.3,0)],
+"2010-11":[("Amar'e Stoudemire",78,2870,36.8,1),("Landry Fields",82,2541,31.0,1),("Raymond Felton",54,2074,38.4,1),("Toney Douglas",81,1971,24.3,0),("Wilson Chandler",51,1759,34.5,0),("Danilo Gallinari",48,1671,34.8,0),("Shawne Williams",64,1323,20.7,1),("Ronny Turiaf",64,1141,17.8,1),("Carmelo Anthony",27,977,36.2,1),("Henry Walker",61,784,12.9,0)],
 }
 records = {
  "2025-26":{"rec":"TBD","post":"TBD"},
@@ -40,8 +40,8 @@ records = {
 coaches = {"2025-26":"Mike Brown","2024-25":"Tom Thibodeau","2023-24":"Tom Thibodeau","2022-23":"Tom Thibodeau","2021-22":"Tom Thibodeau","2020-21":"Tom Thibodeau","2019-20":"David Fizdale / Mike Miller (int.)","2018-19":"David Fizdale","2017-18":"Jeff Hornacek","2016-17":"Jeff Hornacek","2015-16":"Derek Fisher / Kurt Rambis (int.)","2014-15":"Derek Fisher","2013-14":"Mike Woodson","2012-13":"Mike Woodson","2011-12":"Mike D'Antoni / Mike Woodson (int.)","2010-11":"Mike D'Antoni"}
 draft = {"2014-15|Langston Galloway":"Undrafted '14","2015-16|Kristaps Porzingis":"#4 '15","2015-16|Jerian Grant":"#19 '15","2016-17|Willy Hernangomez":"#35 '15","2016-17|Mindaugas Kuzminskas":"Undrafted '16","2017-18|Frank Ntilikina":"#8 '17","2018-19|Kevin Knox":"#9 '18","2018-19|Allonzo Trier":"Undrafted '18","2018-19|Mitchell Robinson":"#36 '18","2019-20|RJ Barrett":"#3 '19","2020-21|Immanuel Quickley":"#25 '20","2021-22|Quentin Grimes":"#25 '21","2013-14|Tim Hardaway Jr.":"#24 '13","2012-13|Pablo Prigioni":"Undrafted '12","2012-13|Chris Copeland":"Undrafted '12","2011-12|Iman Shumpert":"#17 '11","2010-11|Landry Fields":"#39 '10"}
 
-# season rows -> JSON-friendly
-S = {s:[{"n":n,"gp":gp,"min":m,"mpg":mpg,"rk":rk,"pick":draft.get(s+"|"+n,"")} for (n,gp,m,mpg,rk) in rows] for s,rows in seasons.items()}
+# season rows -> JSON-friendly. nw = first season of a Knicks stint (new to the team that year).
+S = {s:[{"n":n,"gp":gp,"min":m,"mpg":mpg,"nw":nw,"pick":draft.get(s+"|"+n,"")} for (n,gp,m,mpg,nw) in rows] for s,rows in seasons.items()}
 
 ledger = [
  {"id":"towns","name":"Karl-Anthony Towns","method":"trade","from":"Minnesota Timberwolves","date":"Oct 2024 · 3-team",
@@ -209,8 +209,8 @@ html = r'''<!DOCTYPE html>
     border-radius:11px;padding:11px 14px;position:relative;overflow:hidden;border:1px solid rgba(0,0,0,.07);
     box-shadow:0 6px 16px rgba(0,0,0,.2);opacity:0;transform:translateY(10px);animation:rise .42s forwards}
   @keyframes rise{to{opacity:1;transform:none}}
-  .row.rookie{background:linear-gradient(180deg,#fff6e2,#ffeec9)}
-  .row.rookie::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--orange)}
+  .row.newcomer{background:linear-gradient(180deg,#fff6e2,#ffeec9)}
+  .row.newcomer::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--orange)}
   .rk{font-family:"Bebas Neue",sans-serif;font-size:1.5rem;color:#9aa1b0;text-align:center}
   .row:nth-child(1) .rk,.row:nth-child(2) .rk,.row:nth-child(3) .rk{color:var(--orange)}
   .pmain{min-width:0}
@@ -226,7 +226,7 @@ html = r'''<!DOCTYPE html>
   .chip.how:hover{filter:brightness(.94);text-decoration:underline}
   .bar{height:6px;border-radius:4px;margin-top:7px;background:rgba(0,0,0,.07);overflow:hidden}
   .bar > i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--orange),var(--orange-soft))}
-  .row.rookie .bar > i{background:linear-gradient(90deg,#b4500a,var(--orange))}
+  .row.newcomer .bar > i{background:linear-gradient(90deg,#b4500a,var(--orange))}
   .stat{text-align:right;white-space:nowrap}
   .stat .m{font-family:"Bebas Neue",sans-serif;font-size:1.7rem;line-height:1;color:#10131a}
   .stat .m small{font-family:"JetBrains Mono",monospace;font-size:.6rem;color:#8a93a3;letter-spacing:.05em}
@@ -351,7 +351,7 @@ html = r'''<!DOCTYPE html>
   <header>
     <div class="kicker">New York Knicks · Minutes &amp; Roster Ledger</div>
     <h1>The <span class="o">Knicks</span> Minutes Ledger</h1>
-    <p class="sub">Top-10 regular-season minutes leaders for every year, <b>2010–11 → 2025–26</b> — with rookies (★), their draft slot, and the head coach. Tap any <b>highlighted name</b> to see how the Knicks landed him.</p>
+    <p class="sub">Top-10 regular-season minutes leaders for every year, <b>2010–11 → 2025–26</b> — with first-year Knicks (★), draft slots for rookies, and the head coach. Tap any <b>highlighted name</b> to see how the Knicks landed him.</p>
     <div class="modes">
       <button class="mode active" data-mode="board">Minutes by Season</button>
       <button class="mode" data-mode="ledger">How They Were Built</button>
@@ -363,7 +363,7 @@ html = r'''<!DOCTYPE html>
     <div class="yearbar" id="yearbar"></div>
     <div class="board" id="board"></div>
     <div class="legend">
-      <span>★ <b>Rookie season</b> (draft slot shown)</span>
+      <span>★ <b>First season on the Knicks</b> (draft slot shown for rookies)</span>
       <span>Bar = share of season's top minute total</span>
       <span>Colored name chip = tap to view acquisition</span>
     </div>
@@ -460,10 +460,10 @@ function drawSeason(s){
   rows.forEach((r,i)=>{
     const how=NAME2[norm(r.n)];
     const howChip = how ? `<span class="chip how ${how.method}" data-id="${how.id}">${how.method==='trade'?'Trade':how.method==='draft'?'Draft':'Free Agent'} ▸</span>` : '';
-    const star = r.rk ? `<span class="star">★</span>` : '';
-    const pick = r.rk && r.pick ? `<span class="chip pick">${r.pick}</span>` : '';
+    const star = r.nw ? `<span class="star" title="First season on the Knicks">★</span>` : '';
+    const pick = r.pick ? `<span class="chip pick">${r.pick}</span>` : '';
     const w=(r.min/max*100).toFixed(1);
-    html+=`<div class="row${r.rk?' rookie':''}" style="animation-delay:${Math.min(i*45,500)}ms">
+    html+=`<div class="row${r.nw?' newcomer':''}" style="animation-delay:${Math.min(i*45,500)}ms">
       <div class="rk">${i+1}</div>
       <div class="pmain">
         <div class="pname">${r.n}${star}${pick}${howChip}</div>
