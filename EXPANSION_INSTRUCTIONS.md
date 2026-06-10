@@ -17,9 +17,9 @@ A single self-contained page (`index.html`) plus a spreadsheet. Both are **gener
 | `knicks_top10_minutes_2010-2026.xlsx` | The spreadsheet. **Build output.** |
 | `EXPANSION_INSTRUCTIONS.md` | This file. |
 
-The core dataset = **top-10 New York Knicks players by TOTAL regular-season minutes** for each season, with name, GP, total MIN, MPG, a rookie flag, and (for rookies) draft slot; plus the head coach per season.
+The core dataset = **top-10 New York Knicks players by TOTAL regular-season minutes** for each season, with name, GP, total MIN, MPG, a 5th-element flag, and (for rookies) draft slot; plus the head coach per season.
 
-The same season/coach/draft data is **duplicated** in both scripts. When you change one, change the other identically. (A future refactor could move it to a shared `data.py`; until then, edit both.)
+The same season/coach/draft data is **duplicated** in both scripts. When you change one, change the other identically — **except the 5th-element flag, which differs by script** (`build_html.py` = first-Knicks-year flag for the ★; `build_xlsx.py` = rookie flag). See §3. (A future refactor could move it to a shared `data.py`; until then, edit both.)
 
 ---
 
@@ -47,20 +47,21 @@ For a deeper check, parse the embedded JSON and confirm `MIN/GP ≈ MPG` for eve
 
 ---
 
-## 3. Data structures (identical data, two key formats)
+## 3. Data structures (same numbers, two key formats — and the 5th flag differs!)
 
 ### `build_html.py`
 ```python
 seasons = {
-  "YYYY-YY": [ (player_name, GP, total_minutes, MPG, rookie_flag), ... 10 tuples in rank order ],
+  "YYYY-YY": [ (player_name, GP, total_minutes, MPG, first_knicks_year_flag), ... 10 tuples in rank order ],
 }
 coaches = { "YYYY-YY": "Coach Name" }                 # mid-season change -> "Name A / Name B (int.)"
 draft   = { "YYYY-YY|Exact Player Name": "#NN 'YY" }  # rookies ONLY; "Undrafted 'YY" if undrafted
 ```
+> **The 5th element here is the "first season on the Knicks" flag** (drives the ★ + row highlight), **not** the rookie flag. Set it to `1` when that season is the first year of a Knicks stint — i.e. the player was *not* on the roster the prior season (newcomers AND players returning for a new stint, e.g. Felton 2012-13, D. Rose 2020-21). The `draft` dict (rookies only) still controls the draft-slot chip independently.
 
-### `build_xlsx.py` (same numbers, different key/label format!)
+### `build_xlsx.py` (same numbers, different key/label format — and still a true rookie flag!)
 ```python
-data    = { "YYYY-YY": [ (name, GP, MIN, MPG, rookie_flag), ... ] }   # same as seasons
+data    = { "YYYY-YY": [ (name, GP, MIN, MPG, rookie_flag), ... ] }   # 5th element = ROOKIE flag here
 coaches = { "YYYY-YY": "Coach Name" }                                 # same
 draft   = { ("YYYY-YY", "Exact Player Name"): "#NN (YYYY)" }          # TUPLE key, full-year label
 ```
@@ -77,7 +78,9 @@ The player name in a `draft` key **must exactly match** the name string in the t
    **Fox uses the season's STARTING year:** `season=2013` → the 2013-14 season.
    **Fallback / cross-check:** Basketball-Reference team page `https://www.basketball-reference.com/teams/NYK/YYYY.html` — note B-Ref uses the **ENDING** year (`/2014.html` = 2013-14); its "Totals" table `MP` column is total minutes.
 2. Take the **top 10 by total minutes** (not MPG — a durable high-GP role player can outrank a higher-MPG player who missed games; that's intended).
-3. **Rookie flag = 1** only if that season was the player's **first NBA season** — verify each one, don't assume. (Trap: a player's "breakout" year is often his 2nd year, e.g. Jeremy Lin in 2011-12 was *not* a rookie — his rookie year was 2010-11 in Golden State.)
+3. **Two different 5th-element flags — set each per its own rule:**
+   - **`build_html.py` → first-Knicks-year flag = 1** if the player was **not on the Knicks the prior season** (true newcomers and players returning for a new stint). Continuous holdovers = 0.
+   - **`build_xlsx.py` → rookie flag = 1** only if that season was the player's **first NBA season** — verify each one, don't assume. (Trap: a player's "breakout" year is often his 2nd year, e.g. Jeremy Lin in 2011-12 was *not* a rookie — his rookie year was 2010-11 in Golden State.)
 4. For each rookie, get overall pick + draft year (`"#NN 'YY"` / `"#NN (YYYY)"`, or `"Undrafted 'YY"` / `"Undrafted (YYYY)"`).
 5. Head coach per season; mid-season change → `"Name A / Name B (int.)"`.
 
