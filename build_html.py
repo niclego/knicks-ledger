@@ -40,8 +40,29 @@ records = {
 coaches = {"2025-26":"Mike Brown","2024-25":"Tom Thibodeau","2023-24":"Tom Thibodeau","2022-23":"Tom Thibodeau","2021-22":"Tom Thibodeau","2020-21":"Tom Thibodeau","2019-20":"David Fizdale / Mike Miller (int.)","2018-19":"David Fizdale","2017-18":"Jeff Hornacek","2016-17":"Jeff Hornacek","2015-16":"Derek Fisher / Kurt Rambis (int.)","2014-15":"Derek Fisher","2013-14":"Mike Woodson","2012-13":"Mike Woodson","2011-12":"Mike D'Antoni / Mike Woodson (int.)","2010-11":"Mike D'Antoni"}
 draft = {"2014-15|Langston Galloway":"Undrafted '14","2015-16|Kristaps Porzingis":"#4 '15","2015-16|Jerian Grant":"#19 '15","2016-17|Willy Hernangomez":"#35 '15","2016-17|Mindaugas Kuzminskas":"Undrafted '16","2017-18|Frank Ntilikina":"#8 '17","2018-19|Kevin Knox":"#9 '18","2018-19|Allonzo Trier":"Undrafted '18","2018-19|Mitchell Robinson":"#36 '18","2019-20|RJ Barrett":"#3 '19","2020-21|Immanuel Quickley":"#25 '20","2021-22|Quentin Grimes":"#25 '21","2013-14|Tim Hardaway Jr.":"#24 '13","2012-13|Pablo Prigioni":"Undrafted '12","2012-13|Chris Copeland":"Undrafted '12","2011-12|Iman Shumpert":"#17 '11","2010-11|Landry Fields":"#39 '10"}
 
+# Knicks jersey numbers per season|player (Basketball-Reference roster "No.").
+# Numbers can differ between a player's stints, so they are keyed by season + name.
+numbers = {
+ "2025-26|Mikal Bridges":"25","2025-26|Jalen Brunson":"11","2025-26|Karl-Anthony Towns":"32","2025-26|OG Anunoby":"8","2025-26|Josh Hart":"3","2025-26|Jordan Clarkson":"00","2025-26|Mitchell Robinson":"23","2025-26|Landry Shamet":"44","2025-26|Miles McBride":"2","2025-26|Tyler Kolek":"13",
+ "2024-25|Mikal Bridges":"25","2024-25|Josh Hart":"3","2024-25|OG Anunoby":"8","2024-25|Karl-Anthony Towns":"32","2024-25|Jalen Brunson":"11","2024-25|Miles McBride":"2","2024-25|Precious Achiuwa":"5","2024-25|Cameron Payne":"1","2024-25|Landry Shamet":"44","2024-25|Jericho Sims":"20",
+ "2023-24|Jalen Brunson":"11","2023-24|Josh Hart":"3","2023-24|Donte DiVincenzo":"0","2023-24|Isaiah Hartenstein":"55","2023-24|Julius Randle":"30","2023-24|Miles McBride":"2","2023-24|Precious Achiuwa":"5","2023-24|Quentin Grimes":"6","2023-24|OG Anunoby":"8","2023-24|Mitchell Robinson":"23",
+ "2022-23|Julius Randle":"30","2022-23|RJ Barrett":"9","2022-23|Jalen Brunson":"11","2022-23|Immanuel Quickley":"5","2022-23|Quentin Grimes":"6","2022-23|Isaiah Hartenstein":"55","2022-23|Mitchell Robinson":"23","2022-23|Obi Toppin":"1","2022-23|Jericho Sims":"45","2022-23|Miles McBride":"2",
+ "2021-22|Julius Randle":"30","2021-22|RJ Barrett":"9","2021-22|Evan Fournier":"13","2021-22|Alec Burks":"18","2021-22|Mitchell Robinson":"23","2021-22|Immanuel Quickley":"5","2021-22|Obi Toppin":"1","2021-22|Kemba Walker":"8","2021-22|Taj Gibson":"67","2021-22|Quentin Grimes":"6",
+ "2020-21|Julius Randle":"30","2020-21|RJ Barrett":"9","2020-21|Reggie Bullock":"25","2020-21|Nerlens Noel":"3","2020-21|Elfrid Payton":"6","2020-21|Alec Burks":"18","2020-21|Immanuel Quickley":"5","2020-21|Derrick Rose":"4","2020-21|Taj Gibson":"67","2020-21|Mitchell Robinson":"23",
+ "2019-20|Julius Randle":"30","2019-20|RJ Barrett":"9","2019-20|Mitchell Robinson":"23","2019-20|Bobby Portis":"1","2019-20|Marcus Morris":"13","2019-20|Elfrid Payton":"6","2019-20|Frank Ntilikina":"11","2019-20|Kevin Knox":"20","2019-20|Taj Gibson":"67","2019-20|Damyean Dotson":"21",
+ "2018-19|Kevin Knox":"20","2018-19|Damyean Dotson":"21","2018-19|Noah Vonleh":"32","2018-19|Emmanuel Mudiay":"1","2018-19|Tim Hardaway Jr.":"3","2018-19|Allonzo Trier":"14","2018-19|Mitchell Robinson":"26","2018-19|Mario Hezonja":"8","2018-19|Enes Kanter":"00","2018-19|Frank Ntilikina":"11",
+ "2017-18|Tim Hardaway Jr.":"3","2017-18|Enes Kanter":"00","2017-18|Frank Ntilikina":"11","2017-18|Michael Beasley":"8","2017-18|Kristaps Porzingis":"6","2017-18|Jarrett Jack":"55","2017-18|Kyle O'Quinn":"9","2017-18|Lance Thomas":"42","2017-18|Doug McDermott":"20","2017-18|Trey Burke":"23",
+ "2016-17|Carmelo Anthony":"7","2016-17|Courtney Lee":"5","2016-17|Kristaps Porzingis":"6","2016-17|Derrick Rose":"25","2016-17|Justin Holiday":"8","2016-17|Brandon Jennings":"3","2016-17|Willy Hernangomez":"14","2016-17|Kyle O'Quinn":"9","2016-17|Mindaugas Kuzminskas":"91","2016-17|Joakim Noah":"13",
+ "2015-16|Carmelo Anthony":"7","2015-16|Arron Afflalo":"4","2015-16|Robin Lopez":"8","2015-16|Kristaps Porzingis":"6","2015-16|Langston Galloway":"2","2015-16|Jose Calderon":"3","2015-16|Derrick Williams":"23","2015-16|Lance Thomas":"42","2015-16|Jerian Grant":"13","2015-16|Sasha Vujacic":"18",
+ "2014-15|Shane Larkin":"0","2014-15|Jason Smith":"14","2014-15|Tim Hardaway Jr.":"5","2014-15|Langston Galloway":"2","2014-15|Carmelo Anthony":"7","2014-15|Quincy Acy":"4","2014-15|Jose Calderon":"3","2014-15|Lance Thomas":"42","2014-15|Cole Aldrich":"45","2014-15|Amar'e Stoudemire":"1",
+ "2013-14|Carmelo Anthony":"7","2013-14|JR Smith":"8","2013-14|Raymond Felton":"2","2013-14|Iman Shumpert":"21","2013-14|Tim Hardaway Jr.":"5","2013-14|Tyson Chandler":"6","2013-14|Amar'e Stoudemire":"1","2013-14|Pablo Prigioni":"9","2013-14|Andrea Bargnani":"77","2013-14|Kenyon Martin":"26",
+ "2012-13|JR Smith":"8","2012-13|Carmelo Anthony":"7","2012-13|Raymond Felton":"2","2012-13|Tyson Chandler":"6","2012-13|Jason Kidd":"5","2012-13|Steve Novak":"16","2012-13|Pablo Prigioni":"9","2012-13|Iman Shumpert":"21","2012-13|Chris Copeland":"14","2012-13|Ronnie Brewer":"11",
+ "2011-12|Tyson Chandler":"6","2011-12|Landry Fields":"2","2011-12|Carmelo Anthony":"7","2011-12|Iman Shumpert":"21","2011-12|Amar'e Stoudemire":"1","2011-12|Steve Novak":"16","2011-12|JR Smith":"8","2011-12|Jeremy Lin":"17","2011-12|Jared Jeffries":"20","2011-12|Toney Douglas":"23",
+ "2010-11|Amar'e Stoudemire":"1","2010-11|Landry Fields":"6","2010-11|Raymond Felton":"2","2010-11|Toney Douglas":"23","2010-11|Wilson Chandler":"21","2010-11|Danilo Gallinari":"8","2010-11|Shawne Williams":"3","2010-11|Ronny Turiaf":"14","2010-11|Carmelo Anthony":"7","2010-11|Henry Walker":"5",
+}
+
 # season rows -> JSON-friendly. nw = first season of a Knicks stint (new to the team that year).
-S = {s:[{"n":n,"gp":gp,"min":m,"mpg":mpg,"nw":nw,"pick":draft.get(s+"|"+n,"")} for (n,gp,m,mpg,nw) in rows] for s,rows in seasons.items()}
+S = {s:[{"n":n,"gp":gp,"min":m,"mpg":mpg,"nw":nw,"pick":draft.get(s+"|"+n,""),"num":numbers.get(s+"|"+n,"")} for (n,gp,m,mpg,nw) in rows] for s,rows in seasons.items()}
 
 ledger = [
  {"id":"towns","name":"Karl-Anthony Towns","method":"trade","from":"Minnesota Timberwolves","date":"Oct 2024 · 3-team",
@@ -192,16 +213,16 @@ for d in ledger:
 # 2025-26 cap hits (Spotrac / SalarySwish), matches the season's top-10 minutes rotation
 # yrs = status across 2025-26..2029-30: g=guaranteed, po=player option, to=team option, ''=not under contract
 salary = [
- {"n":"Karl-Anthony Towns","s":53142264,"tier":"max","ctx":"Supermax · acquired 2024","yrs":["g","g","po","",""],"fa":"UFA"},
- {"n":"OG Anunoby","s":39568966,"tier":"max","ctx":"5 yr / $212.5M (2024)","yrs":["g","g","g","po",""],"fa":"UFA"},
- {"n":"Jalen Brunson","s":34944001,"tier":"max","ctx":"4 yr / $156.5M (2024) · left ~$113M on the table","yrs":["g","g","g","po",""],"fa":"UFA"},
- {"n":"Mikal Bridges","s":24900000,"tier":"core","ctx":"4 yr / $150M extension starts 2026-27","yrs":["g","g","g","g","po"],"fa":""},
- {"n":"Josh Hart","s":19472240,"tier":"core","ctx":"4 yr / $80.9M (2023)","yrs":["g","g","to","",""],"fa":"UFA"},
- {"n":"Mitchell Robinson","s":12954546,"tier":"core","ctx":"4 yr / $60M (2022)","yrs":["g","","","",""],"fa":"UFA"},
- {"n":"Miles McBride","s":4333333,"tier":"role","ctx":"3 yr / $13M (2024)","yrs":["g","g","","",""],"fa":"UFA"},
- {"n":"Jordan Clarkson","s":2296274,"tier":"role","ctx":"Veteran minimum (2025)","yrs":["g","","","",""],"fa":"UFA"},
- {"n":"Landry Shamet","s":2296274,"tier":"role","ctx":"Veteran minimum","yrs":["g","","","",""],"fa":"UFA"},
- {"n":"Tyler Kolek","s":2191897,"tier":"role","ctx":"Rookie scale · 2nd round '24","yrs":["g","g","to","",""],"fa":"RFA"},
+ {"n":"Karl-Anthony Towns","num":"32","s":53142264,"tier":"max","ctx":"Supermax · acquired 2024","yrs":["g","g","po","",""],"fa":"UFA"},
+ {"n":"OG Anunoby","num":"8","s":39568966,"tier":"max","ctx":"5 yr / $212.5M (2024)","yrs":["g","g","g","po",""],"fa":"UFA"},
+ {"n":"Jalen Brunson","num":"11","s":34944001,"tier":"max","ctx":"4 yr / $156.5M (2024) · left ~$113M on the table","yrs":["g","g","g","po",""],"fa":"UFA"},
+ {"n":"Mikal Bridges","num":"25","s":24900000,"tier":"core","ctx":"4 yr / $150M extension starts 2026-27","yrs":["g","g","g","g","po"],"fa":""},
+ {"n":"Josh Hart","num":"3","s":19472240,"tier":"core","ctx":"4 yr / $80.9M (2023)","yrs":["g","g","to","",""],"fa":"UFA"},
+ {"n":"Mitchell Robinson","num":"23","s":12954546,"tier":"core","ctx":"4 yr / $60M (2022)","yrs":["g","","","",""],"fa":"UFA"},
+ {"n":"Miles McBride","num":"2","s":4333333,"tier":"role","ctx":"3 yr / $13M (2024)","yrs":["g","g","","",""],"fa":"UFA"},
+ {"n":"Jordan Clarkson","num":"00","s":2296274,"tier":"role","ctx":"Veteran minimum (2025)","yrs":["g","","","",""],"fa":"UFA"},
+ {"n":"Landry Shamet","num":"44","s":2296274,"tier":"role","ctx":"Veteran minimum","yrs":["g","","","",""],"fa":"UFA"},
+ {"n":"Tyler Kolek","num":"13","s":2191897,"tier":"role","ctx":"Rookie scale · 2nd round '24","yrs":["g","g","to","",""],"fa":"RFA"},
 ]
 SEASON_COLS = ["2025-26","2026-27","2027-28","2028-29","2029-30"]
 glossary = [
@@ -298,6 +319,9 @@ html = r'''<!DOCTYPE html>
   .row:nth-child(1) .rk,.row:nth-child(2) .rk,.row:nth-child(3) .rk{color:var(--orange)}
   .pmain{min-width:0}
   .pname{font-family:"Bebas Neue",sans-serif;font-size:1.5rem;letter-spacing:.02em;line-height:1;color:#10131a;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .pnum{font-family:"JetBrains Mono",monospace;font-size:.72rem;font-weight:700;letter-spacing:.02em;
+    color:#6a7283;background:rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.12);padding:2px 6px;border-radius:5px}
+  .row.newcomer .pnum{color:#b4500a;background:rgba(247,105,0,.12);border-color:rgba(247,105,0,.3)}
   .star{color:var(--orange);font-size:1.05rem}
   .chip{font-family:"JetBrains Mono",monospace;font-size:.58rem;font-weight:700;letter-spacing:.06em;
     padding:2px 7px;border-radius:5px;text-transform:uppercase;white-space:nowrap}
@@ -383,6 +407,7 @@ html = r'''<!DOCTYPE html>
   @media(max-width:560px){.salrow{grid-template-columns:108px 1fr;gap:9px}}
   .salname{text-align:right;font-family:"Newsreader",serif}
   .salname .nm{font-weight:600;font-size:.96rem;color:var(--cream);cursor:default;line-height:1.1}
+  .salname .snum{font-family:"JetBrains Mono",monospace;font-size:.6rem;font-weight:700;color:var(--muted);margin-right:5px}
   .salname .nm.link{cursor:pointer;border-bottom:1px dotted rgba(244,237,224,.4)}
   .salname .nm.link:hover{color:var(--orange-soft)}
   .salname .cx{font-family:"JetBrains Mono",monospace;font-size:.56rem;color:var(--muted);margin-top:3px;line-height:1.25;letter-spacing:.02em}
@@ -545,11 +570,12 @@ function drawSeason(s){
     const howChip = how ? `<span class="chip how ${how.method}" data-id="${how.id}">${how.method==='trade'?'Trade':how.method==='draft'?'Draft':'Free Agent'} ▸</span>` : '';
     const star = r.nw ? `<span class="star" title="First season on the Knicks">★</span>` : '';
     const pick = r.pick ? `<span class="chip pick">${r.pick}</span>` : '';
+    const num = r.num ? `<span class="pnum" title="Jersey number">#${r.num}</span>` : '';
     const w=(r.min/max*100).toFixed(1);
     html+=`<div class="row${r.nw?' newcomer':''}" style="animation-delay:${Math.min(i*45,500)}ms">
       <div class="rk">${i+1}</div>
       <div class="pmain">
-        <div class="pname">${r.n}${star}${pick}${howChip}</div>
+        <div class="pname">${num}${r.n}${star}${pick}${howChip}</div>
         <div class="bar"><i style="width:${w}%"></i></div>
       </div>
       <div class="stat">
@@ -650,7 +676,8 @@ function renderSalary(){
   let b='';
   SAL.forEach(p=>{
     const how=NAME2[norm(p.n)];
-    const link=how?`<span class="nm link" data-id="${how.id}">${p.n}</span>`:`<span class="nm">${p.n}</span>`;
+    const numTag=p.num?`<span class="snum">#${p.num}</span>`:'';
+    const link=how?`<span class="nm link" data-id="${how.id}">${numTag}${p.n}</span>`:`<span class="nm">${numTag}${p.n}</span>`;
     const pct=(p.s/CAP.cap*100).toFixed(0);
     b+=`<div class="salrow">
       <div class="salname">${link}<div class="cx">${p.ctx}</div></div>
