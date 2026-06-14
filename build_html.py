@@ -20,7 +20,7 @@ seasons = {
 "2010-11":[("Amar'e Stoudemire",78,2870,36.8,1),("Landry Fields",82,2541,31.0,1),("Raymond Felton",54,2074,38.4,1),("Toney Douglas",81,1971,24.3,0),("Wilson Chandler",51,1759,34.5,0),("Danilo Gallinari",48,1671,34.8,0),("Shawne Williams",64,1323,20.7,1),("Ronny Turiaf",64,1141,17.8,1),("Carmelo Anthony",27,977,36.2,1),("Henry Walker",61,784,12.9,0)],
 }
 records = {
- "2025-26":{"rec":"TBD","post":"TBD"},
+ "2025-26":{"rec":"53–29","post":"Won NBA Finals · 4–1 vs Spurs (Champions)"},
  "2024-25":{"rec":"51–31","post":"Lost Conf. Finals · 2–4 vs Pacers"},
  "2023-24":{"rec":"50–32","post":"Lost Conf. Semis · 3–4 vs Pacers"},
  "2022-23":{"rec":"47–35","post":"Lost Conf. Semis · 2–4 vs Heat"},
