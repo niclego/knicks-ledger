@@ -53,6 +53,21 @@
   .reccard .post.made{background:rgba(31,122,77,.16);color:#7fd9a8;border:1px solid rgba(31,122,77,.4)}
   .reccard .post.miss{background:rgba(124,133,151,.14);color:var(--muted);border:1px solid var(--line)}
   .reccard .post.tbd{background:rgba(247,105,0,.14);color:var(--orange-soft);border:1px solid rgba(247,105,0,.3)}
+  .reccard .post.champ{background:linear-gradient(180deg,#f6c84b,#d99b1e);color:#2a1c00;
+    border:1px solid #f6d479;box-shadow:0 2px 10px rgba(214,160,30,.35)}
+
+  /* championship banner */
+  .champbanner{margin-top:24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+    background:linear-gradient(110deg,rgba(214,160,30,.16),rgba(247,105,0,.12) 60%,rgba(214,160,30,.16));
+    border:1px solid rgba(246,200,75,.45);border-radius:14px;padding:16px 20px;
+    box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .champbanner .trophy{font-size:2.4rem;line-height:1;filter:drop-shadow(0 2px 6px rgba(246,200,75,.5))}
+  .champbanner .ctxt{display:flex;flex-direction:column;gap:3px}
+  .champbanner .ctop{font-family:"JetBrains Mono",monospace;font-weight:700;letter-spacing:.22em;
+    text-transform:uppercase;font-size:.66rem;color:#f6c84b}
+  .champbanner .cmain{font-family:"Bebas Neue",sans-serif;font-size:1.85rem;line-height:1;letter-spacing:.02em;color:var(--cream)}
+  .champbanner .cmain b{color:#f6c84b;font-weight:400}
+  .champbanner .csub{font-size:.92rem;color:#cdd4e0}
   .rows{display:flex;flex-direction:column;gap:7px}
   .row{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:12px;
     background:linear-gradient(180deg,var(--paper),var(--cream));color:var(--ink);
@@ -203,9 +218,17 @@
 <body>
 <div class="wrap">
   <header>
-    <div class="kicker">New York Knicks · Minutes &amp; Roster Ledger</div>
+    <div class="kicker">New York Knicks · 2026 NBA Champions</div>
     <h1>The <span class="o">Knicks</span> Minutes Ledger</h1>
     <p class="sub">Top-10 regular-season minutes leaders for every year, <b>2010–11 → 2025–26</b> — with first-year Knicks (★), draft slots for rookies, and the head coach. Tap any <b>highlighted name</b> to see how the Knicks landed him.</p>
+    <div class="champbanner">
+      <div class="trophy">🏆</div>
+      <div class="ctxt">
+        <div class="ctop">2025–26 · NBA Champions</div>
+        <div class="cmain">The Knicks are <b>champions of the NBA</b></div>
+        <div class="csub">53–29 in the regular season, then past the field and over the Spurs <b>4–1</b> in the Finals — the franchise's first title since 1973.</div>
+      </div>
+    </div>
     <div class="modes">
       <button class="mode active" data-mode="board">Minutes by Season</button>
       <button class="mode" data-mode="ledger">How They Were Built</button>
@@ -304,7 +327,9 @@ function drawSeason(s){
   const coachRaw=COACHES[s];
   const coach=`Head Coach: <span style="color:#cdd4e0">${coachRaw}</span>`;
   const rec=RECORDS[s]||{};
-  const postCls = (rec.post==='Missed playoffs') ? 'miss' : (rec.post==='TBD' ? 'tbd' : 'made');
+  const postCls = /Champions/.test(rec.post||'') ? 'champ'
+    : (rec.post==='Missed playoffs') ? 'miss'
+    : (rec.post==='TBD' ? 'tbd' : 'made');
   const recLine = rec.rec ? `<div class="reccard">
       <span class="rec">${rec.rec}</span>
       <span class="post ${postCls}">${rec.post||''}</span>
